@@ -1,7 +1,9 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.io.PrintStream;
 
 public class Main {
+    
 
     static String[] woerter = {
         "APFEL", "BLUME", "BREIT", "DANKE", "DELTA",
@@ -18,18 +20,19 @@ public class Main {
             char buchstabe = tipp.charAt(i);
 
             if (buchstabe == geheimwort.charAt(i)) {
-                feedback += "🟩";
+                feedback += "[✓]"; // richtige Position
             } else if (geheimwort.indexOf(buchstabe) != -1) {
-                feedback += "🟨";
+                feedback += "[~]"; // Falsche position
             } else {
-                feedback += "⬜";
+                feedback += "[ ]"; // Nicht im Wort
             }
         }
 
         return feedback;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args ) throws Exception {
+        System.setOut(new PrintStream(System.out, true, "UTF-8"));
         Random zufall = new Random();
         String geheimwort = woerter[zufall.nextInt(woerter.length)];
         Scanner scanner = new Scanner(System.in);
